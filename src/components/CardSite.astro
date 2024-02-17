@@ -1,0 +1,23 @@
+---
+import type {Point} from '../stores/mapStore'
+
+
+interface props {
+    site: Point
+}
+
+const { site } = Astro.props
+---
+
+<div class="w-full h-36 border border-slate-400 rounded-md flex">
+    <div class=" flex-none w-36 object-cover">
+        <img class="object-cover h-full" src={site.image} alt="">
+    </div>
+    <div class="p-2 box-border flex-grow flex flex-col">
+        <h1>{site.name} </h1>
+        <span> {site.type} </span>
+        <p>
+            {site.description}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Map from "../components/map/Map";
+import CardSite from "../components/CardSite.astro";
+
+import { sites } from "../data/sites";
+import type { points } from "../stores/mapStore";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="w-[100vw] h-[100vh]">
+    <div
+      class="absolute top-16 w-full box-border translate-y-80 md:translate-y-0 h-auto md:h-[100vh] md:top-0 z-10 md:fixed md:w-1/2 md:p-9"
+    >
+      <div
+        class="relative min-h-min h-full bg-white rounded-t-md rounded-b-none shadow-[0_35px_60px_15px_rgba(0,0,0,0.3)] md:h-full md:rounded-md md:border md:border-black md:shadow-none md:overflow-hidden"
+      >
+        <div class="w-full md:h-full md:absolute md: overflow-y-auto p-6">
+          <ul class="flex flex-col gap-8">
+            {
+              sites.map((site) => {
+                return( 
+                  <a href={'/sitio/' + site.id}>
+                    <CardSite site={site} />
+                  </a>
+                  
+                  );
+              })
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <Map client:only points={sites}/>
+  </main>
+</Layout>
