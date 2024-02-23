@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Map from "../components/map/Map";
 import CardSite from "../components/CardSite.astro";
+import Adv from "../components/adventages/Adv.astro";
 
 import { sites } from "../data/sites";
 import type { points } from "../stores/mapStore";
@@ -15,22 +16,41 @@ import type { points } from "../stores/mapStore";
       <div
         class="relative min-h-min h-full bg-white rounded-t-md rounded-b-none shadow-[0_35px_60px_15px_rgba(0,0,0,0.3)] md:h-full md:rounded-md md:border md:border-black md:shadow-none md:overflow-hidden"
       >
-        <div class="w-full md:h-full md:absolute md: overflow-y-auto p-6">
-          <ul class="flex flex-col gap-8">
-            {
-              sites.map((site) => {
-                return( 
-                  <a href={'/sitio/' + site.id}>
-                    <CardSite site={site} />
-                  </a>
-                  
+        <div
+          class="content-container w-full md:h-full md:absolute md: overflow-y-auto"
+        >
+          <Adv />
+          <div class="p-6">
+            <ul class="flex flex-col gap-8">
+              {
+                sites.map((site) => {
+                  return (
+                    <a href={"/sitio/" + site.id}>
+                      <CardSite site={site} />
+                    </a>
                   );
-              })
-            }
-          </ul>
+                })
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-    <Map client:only points={sites}/>
+    <Map client:only points={sites} />
   </main>
 </Layout>
+<style>
+  .content-container::-webkit-scrollbar {
+    width: 8px; /* width of the entire scrollbar */
+  }
+
+  .content-container::-webkit-scrollbar-track {
+    background: none; /* color of the tracking area */
+  }
+
+  .content-container::-webkit-scrollbar-thumb {
+    background-color: rgb(153, 153, 153); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid white; /* creates padding around scroll thumb */
+  }
+</style>

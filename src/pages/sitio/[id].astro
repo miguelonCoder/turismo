@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import Map from '../../components/map/Map'
+import Visor from '../../components/visor360/Visor360'
 import { sites } from '../../data/sites'
 
 export const getStaticPaths = () => {
@@ -28,7 +29,7 @@ const site = Astro.props;
 				</div>
 			</div>
 		</div>
-		<Map client:only points={[site]}/>
+		<Visor client:only point={site}/>
 	</main>
 </Layout>
 
