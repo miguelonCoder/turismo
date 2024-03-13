@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { OrbitControls } from '../../stores/OrbitControls'
 import { RGBELoader } from '../../stores/RGBELoader'
 import * as THREE from 'three'
@@ -7,8 +7,24 @@ import type { Point } from '../../stores/mapStore'
 export default function Visor({ point }: { point: Point }) {
 
   const sceneContainer = useRef<HTMLCanvasElement>(null)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
+
+    new RGBELoader()
+      .load(
+        '../../../images/360/' + point.image360, 
+        (texture: any) => {
+          createScene(texture)
+          setLoading(false)
+        },
+        (progress: ProgressEvent)=> {
+          console.log(progress)
+        }
+      )
+  }, [])
+
+  const createScene = (texture: any) => {
     let scene: THREE.Scene
     let renderer: THREE.WebGLRenderer
 
@@ -17,24 +33,16 @@ export default function Visor({ point }: { point: Point }) {
     camera.position.z = 500
 
     renderer = new THREE.WebGLRenderer({
-      canvas: sceneContainer.current!
+      canvas: sceneContainer.current!,
+      antialias: true
     })
 
-    new RGBELoader()
-      .load('../../../images/360/360.hdr', (texture: any) => {
-        texture.mapping = THREE.EquirectangularReflectionMapping
-        scene.background = texture
-        scene.environment = texture
-      })
-
-    const texture = new THREE.TextureLoader().load('https://l13.alamy.com/360es/pn3rnd/el-charco-de-la-registradora-chorro-de-plata-pn3rnd.jpg')
     texture.mapping = THREE.EquirectangularReflectionMapping
-    texture.generateMipmaps = false;
-    texture.minFilter = THREE.LinearMipMapLinearFilter;
+    scene.background = texture
+    scene.environment = texture
 
-    const material = new THREE.MeshBasicMaterial({ map: texture })
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(500, 64, 64), material)
-    scene.add(sphere)
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(window.devicePixelRatio)
 
     const controls = new OrbitControls(camera, sceneContainer.current)
     controls.rotateSpeed = -0.5
@@ -47,14 +55,12 @@ export default function Visor({ point }: { point: Point }) {
     }
 
     animate()
-  }, [])
-
-  const createScene = () => {
-
   }
+
 
   return (
     <div className=' fixed top-0 left-0 right-0 bottom-0' >
+    {loading && <span className=' w-full h-full absolute bg-black text-white flex justify-center items-center'>Estamos cargando la escena</span>}
       <canvas className='h-full w-full' ref={sceneContainer} />
     </div>
   )

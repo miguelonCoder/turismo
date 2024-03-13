@@ -11,6 +11,7 @@ export interface Point {
     geom: any,
     name: string,
     image: string,
+    image360: string,
     description: string,
     type: TypeSite
 } 
