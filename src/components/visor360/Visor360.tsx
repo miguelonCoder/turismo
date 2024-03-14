@@ -19,7 +19,6 @@ export default function Visor({ point }: { point: Point }) {
           setLoading(false)
         },
         (progress: ProgressEvent)=> {
-          console.log(progress)
         }
       )
   }, [])

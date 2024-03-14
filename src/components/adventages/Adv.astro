@@ -1,48 +1,11 @@
 ---
-import Story from './Story.astro'
+import Event from "./Event.astro"
+import Stories from './Stories.astro'
 ---
 
-<div class=" h-[409px] flex flex-col relative">
-  <div class="grow relative">
-    <div class="absolute h-full w-full p-4  md:rounded-none md:p-0 overflow-hidden">
-      <img class="h-full w-full object-cover rounded-md" src="https://www.jamundi.gov.co/Dependencias/PublishingImages/Paginas/Turismo-cultural/wdw3.png" alt="">
-    </div>
-  </div>
-  <h4 class=" px-5 py-4 font-semibold">Historias</h4>
-  <div class=" sticky top-0">
-      <div class="stories-container h-24 flex  relative overflow-x-auto overflow-hidden">
-    <div class=" absolute h-full flex flex-row flex-nowrap items-center px-4">
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-      <Story/>
-    </div>
-  </div>
-  </div>
-
+<div class="h-[409px] flex flex-col relative">
+  <!-- event -->
+  <Event/>
+  <!-- stories -->
+  <Stories/>
 </div>
-<style>
-  .stories-container::-webkit-scrollbar {
-  width: 0px; 
-  display: none;              /* width of the entire scrollbar */
-}
-
-.stories-container::-webkit-scrollbar-track {
-  display: none;        /* color of the tracking area */
-}
-
-.stories-container::-webkit-scrollbar-thumb {
-  display:none;
-}
-</style>

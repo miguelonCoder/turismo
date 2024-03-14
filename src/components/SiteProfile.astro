@@ -1,0 +1,36 @@
+---
+
+const site = Astro.props;
+console.log(site.point.image)
+---
+<article class=" h-full w-full border border-red-400 flex flex-col relative gap-4">
+    <div
+      class="h-60 flex-none w-full p-4 md:rounded-none md:p-0 overflow-hidden"
+    >
+      <img
+        class="h-full w-full object-cover rounded-md"
+        src={site.point.image}
+        alt=""
+      />
+    </div>
+    <div class="relative border border-blue-400 grow overflow-hidden">
+      <div class="info absolute w-full h-full overflow-y-auto">
+        <div class="border border-green-400 h-[500px]"></div>
+      </div>
+    </div>
+</article>
+
+<style>
+  .info::-webkit-scrollbar {
+    width: 3px;
+    display: none; /* width of the entire scrollbar */
+  }
+
+  .info::-webkit-scrollbar-track {
+    //display: none; /* color of the tracking area */
+  }
+
+  .info::-webkit-scrollbar-thumb {
+    //display: none;
+  }
+</style>
