@@ -1,25 +1,99 @@
 ---
+import { Icon } from 'astro-icon/components'
 
 const site = Astro.props;
-console.log(site.point.image)
+console.log(site.point.image);
 ---
-<article class=" h-full w-full border border-red-400 flex flex-col relative gap-4">
-    <div
-      class="h-60 flex-none w-full p-4 md:rounded-none md:p-0 overflow-hidden"
-    >
-      <img
-        class="h-full w-full object-cover rounded-md"
-        src={site.point.image}
-        alt=""
-      />
-    </div>
-    <div class="relative border border-blue-400 grow overflow-hidden">
-      <div class="info absolute w-full h-full overflow-y-auto">
-        <div class="border border-green-400 h-[500px]"></div>
-      </div>
-    </div>
-</article>
 
+<article
+  class="h-full w-full border flex flex-col relative gap-4 overflow-hidden"
+>
+<div class="info absolute w-full h-full overflow-y-auto">
+  <div
+    class="h-auto"
+  >
+
+  <div class=" flex justify-center h-16 p-4 md:hidden">
+    <span class=" w-9 h-2 rounded-full bg-slate-300"></span>
+  </div>
+  <div class=" sticky top-0 px-4 md:px-0">
+        <img
+      class="h-60 w-full object-cover rounded-md"
+      src={site.point.image}
+      alt=""
+    />
+  </div>
+
+
+    <div class="p-4 flex flex-col gap-4">
+      <span class=" py-2 text-xl text-black"> Nombre del escenario</span>
+      <p class=" text-md text-zinc-500">Descripcion Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam consequuntur rerum, distinctio asperiores cumque quos neque dolor dignissimos doloremque hic, et magni tenetur nesciunt, odit sint nemo ipsa deserunt alias!</p>
+    </div>
+  </div>
+  <div class=" h-24 flex flex-row border-b border-zinc-200">
+    <div class=" flex flex-col gap-2 grow justify-center items-center text-green-600 text-4xl">
+      <Icon name="mdi:leaf" />
+      <span class=" text-sm">Ecoturísmo</span>
+    </div>
+    <div class=" flex flex-col  gap-2 grow justify-center items-center text-green-600 text-4xl">
+      <Icon name="mdi:white-balance-sunny" />
+      <span class=" text-sm">Diurno</span>
+    </div>
+    <div class=" flex flex-col  gap-2 grow justify-center items-center text-green-600 text-4xl">
+      <Icon name="mdi:image-filter-hdr" />
+      <span class=" text-sm">Rural</span>
+    </div>
+  </div>
+
+  <div class=" p-4 border-b border-zinc-200">
+    <div class=" flex gap-4 h-9">
+      <span class=" flex-none w-6 text-xl flex justify-center items-center text-green-600">
+        <Icon name="mdi:map-marker" />
+      </span>
+      <span class=" flex grow items-center"> Corregimiento de San Antonio</span>
+    </div>
+
+    <div class=" flex gap-4 h-9">
+      <span class=" flex-none w-6 text-xl flex justify-center items-center text-green-600">
+        <Icon name="mdi:clock-outline" />
+      </span>
+      <span class=" flex grow items-center"> Abierto</span>
+    </div>
+  </div>
+
+  <div class=" flex p-4">
+    <div class=" grow h-14 text-green-600 flex flex-col justify-around"> 
+      <span class=" text-center">
+        Fotografías
+      </span>
+      <span class=" w-full h-1 rounded-full bg-green-600"></span>
+    </div>
+
+    <div class=" grow h-14 text-green-600 flex flex-col justify-around"> 
+      <span class=" text-center">
+        Eventos
+      </span>
+      <span class=" w-full h-1 rounded-full"></span>
+    </div>
+  </div>
+
+  <div class=" grid grid-cols-2 gap-1 p-4">
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+    <div class=" h-48 bg-green-100"></div>
+  </div>
+
+
+</div>
+
+</article>
 <style>
   .info::-webkit-scrollbar {
     width: 3px;
@@ -27,10 +101,10 @@ console.log(site.point.image)
   }
 
   .info::-webkit-scrollbar-track {
-    //display: none; /* color of the tracking area */
+    //display: block; /* color of the tracking area */
   }
 
   .info::-webkit-scrollbar-thumb {
-    //display: none;
+    //display: block;
   }
 </style>
