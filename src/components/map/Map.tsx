@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import type { Point } from '../../stores/mapStore'
 import * as Maplibre from 'maplibre-gl'
-import { Map as Maptalks, TileLayer, VectorLayer, Marker } from 'maptalks'
+import { Map as Maptalks, TileLayer, VectorLayer, Marker, GeoJSON } from 'maptalks'
+import limite from '../../data/limite.ts'
+import paramo from '../../data/paramo.ts'
+import rios from '../../data/rios.ts'
+import vias from '../../data/vias.ts'
 
 interface MapProps {
     points: Point[]
@@ -13,6 +17,12 @@ export default function Map({ points }: MapProps) {
     const mapContainer = useRef<HTMLDivElement>(null)
     const mapInstance = useRef<Maptalks | null>(null)
     const layer = new VectorLayer('sites')
+
+    const limiteLayer = new VectorLayer('limite')
+    const riosLayer = new VectorLayer('rios')
+    const viasLayer = new VectorLayer('vias')
+    const paramoLayer = new VectorLayer('paramo')
+
 
     useEffect(() => {
         mapInstance.current = new Maptalks(mapContainer.current!, {
@@ -36,6 +46,12 @@ export default function Map({ points }: MapProps) {
         
  
     }, [points, mapInstance])
+
+    const addLayers = () => {
+       if (mapInstance.current){
+        Geojson.toGeometry(limite).addTo(limiteLayer)
+       }
+    }
 
  
     return (
